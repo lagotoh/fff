@@ -1,0 +1,22 @@
+local ESP = {} -- our ESP object
+
+local ScreenSize = Vector2.new(ScrW(), ScrH()) -- get the screensize
+
+local function GetPlayers() -- get all players function
+	local players = {} -- our player table
+	for i,v in pairs(game:GetService("Players"):GetChildren()) do -- for each player
+		if v ~= game:GetService("Players").LocalPlayer then -- if the player isn't us
+			table.insert(players, v) -- insert the player into the table
+		end
+	end
+	return players -- return the player table
+end
+
+function ESP:DrawPlayers(players) -- draw player function
+	for i,v in pairs(players) do -- for each player
+		local character = v.Character -- get the character
+		if character then -- if they have a character
+			local head = character:FindFirstChild("Head") -- get the head
+			if head then -- if they have a head
+				local pos = head.Position -- get the head position
+				local pos2D = workspace
